@@ -15,12 +15,12 @@ function App() {
   const [almostLetters, setAlmostLetters] = useState([])
   const [correctLetters, setCorrectLetters] = useState([])
   const [gameOver, setGameOver] = useState({ gameOver: false, guessedWord: false })
-
-  const correctWord = "RIGHT";
+  const [correctWord, setCorrectWord] = useState("")
 
   useEffect(() => {
     generateWordSet().then((words) =>{
       setWordSet(words.wordSet)
+      setCorrectWord(words.todaysWord.toUpperCase())
     });
   }, [])
 
@@ -42,17 +42,16 @@ function App() {
 
     if(wordSet.has(currWord.toLowerCase())){
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
+      if(currWord === correctWord){
+        setGameOver({gameOver: true, guessedWord: true})
+        return;
+      }
+
+      if (currAttempt.attempt === 5){
+        setGameOver({gameOver: true, guessedWord: false})
+      }
     } else {
       alert("not a word in the word list")
-    }
-
-    if(currWord === correctWord){
-      setGameOver({gameOver: true, guessedWord: true})
-      return;
-    }
-
-    if (currAttempt.attempt === 5){
-      setGameOver({gameOver: true, guessedWord: false})
     }
   }
 
