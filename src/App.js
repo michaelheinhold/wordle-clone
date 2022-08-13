@@ -3,6 +3,7 @@ import { boardDefault, generateWordSet } from "./Words";
 import './App.css';
 import { createContext, useEffect, useState } from "react";
 import Keyboard from './components/Keyboard';
+import GameOver from './components/GameOver';
 
 export const AppContext = createContext();
 
@@ -13,6 +14,7 @@ function App() {
   const [disabledLetters, setDisabledLetters] = useState([])
   const [almostLetters, setAlmostLetters] = useState([])
   const [correctLetters, setCorrectLetters] = useState([])
+  const [gameOver, setGameOver] = useState({ gameOver: false, guessedWord: false })
 
   const correctWord = "RIGHT";
 
@@ -45,7 +47,12 @@ function App() {
     }
 
     if(currWord === correctWord){
-      alert("good job!")
+      setGameOver({gameOver: true, guessedWord: true})
+      return;
+    }
+
+    if (currAttempt.attempt === 5){
+      setGameOver({gameOver: true, guessedWord: false})
     }
   }
 
@@ -75,11 +82,13 @@ function App() {
           almostLetters,
           setAlmostLetters,
           correctLetters,
-          setCorrectLetters
+          setCorrectLetters,
+          gameOver,
+          setGameOver
         }}
       >
         <WordGrid />
-        <Keyboard />
+        {gameOver.gameOver ? <GameOver /> : <Keyboard />}
       </AppContext.Provider>
     </div>
   );
