@@ -1,4 +1,4 @@
-import wordBank from './AllowedWords.txt'
+import wordBank from './AllowedWords.md'
 
 export const boardDefault = [
   ["", "", "", "", "", ""],
