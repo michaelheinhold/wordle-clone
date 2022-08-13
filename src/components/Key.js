@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from "../App";
 
-const Key = ({ keyVal, bigKey }) => {
+const Key = ({ keyVal, bigKey, disabled, almost, correct }) => {
   const { onSelectLetter, onEnter, onDelete } = useContext(AppContext);
 
   function selectLetter() {
@@ -15,7 +15,7 @@ const Key = ({ keyVal, bigKey }) => {
   }
 
   return (
-    <div className='key' id={ bigKey && 'big' } onClick={selectLetter} key={keyVal}>
+    <div className='key' id={ bigKey ? 'big' : disabled ? "disabled" : correct ? "correct" : almost && "almost" } onClick={selectLetter} key={keyVal}>
       { keyVal }
     </div>
   );

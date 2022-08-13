@@ -10,6 +10,9 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [wordSet, setWordSet] = useState(new Set())
+  const [disabledLetters, setDisabledLetters] = useState([])
+  const [almostLetters, setAlmostLetters] = useState([])
+  const [correctLetters, setCorrectLetters] = useState([])
 
   const correctWord = "RIGHT";
 
@@ -40,6 +43,10 @@ function App() {
     } else {
       alert("not a word in the word list")
     }
+
+    if(currWord === correctWord){
+      alert("good job!")
+    }
   }
 
   function onDelete(){
@@ -52,8 +59,25 @@ function App() {
 
   return (
     <div className="App">
-      <div className='nav'>Michale</div>
-      <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete, correctWord }}>
+      <div className="nav">Michale</div>
+      <AppContext.Provider
+        value={{
+          board,
+          setBoard,
+          currAttempt,
+          setCurrAttempt,
+          onSelectLetter,
+          onEnter,
+          onDelete,
+          correctWord,
+          disabledLetters,
+          setDisabledLetters,
+          almostLetters,
+          setAlmostLetters,
+          correctLetters,
+          setCorrectLetters
+        }}
+      >
         <WordGrid />
         <Keyboard />
       </AppContext.Provider>
