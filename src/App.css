@@ -5,15 +5,17 @@
   display: inline-block;
   margin: 2px;
   vertical-align: top;
+  font-size: 20px;
 }
 .key {
-  height: 40px;
-  width: 30px;
+  height: 50px;
+  width: 40px;
   display: inline-block;
   margin: 2px;
   vertical-align: top;
   background-color: #cfd4d8;
   border-radius: 10%;
+  font-size: 20px;
 }
 
 .word-grid{
@@ -26,5 +28,11 @@
 }
 
 #big {
-  width: 60px;
+  width: 90px;
+}
+
+.nav{
+  font-size: 32px;
+  padding: 10px;
+  border-bottom: solid 1px black;
 }
